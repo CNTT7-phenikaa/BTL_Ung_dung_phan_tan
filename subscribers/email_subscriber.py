@@ -85,16 +85,18 @@ def callback(message):
         data = message.data.decode("utf-8")
         order = json.loads(data)
 
+        if "items" not in order:
+            message.ack()
+            return
+
         send_order_received_email(order)
 
         message.ack()
         print("[Email Service] Đã xác nhận tin nhắn")
 
     except Exception as e:
-        print("[Email Service] Error:", e)
-        if "items" not in order:
-            message.ack()
-            return
+        print("[Email Service] Lỗi:", e)
+        message.nack()
 
 
 print("[Email Service] Đang chờ đơn hàng mới...")

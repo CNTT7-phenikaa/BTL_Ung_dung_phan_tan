@@ -147,6 +147,11 @@ def callback(message):
         data = message.data.decode("utf-8")
         inventory_result = json.loads(data)
 
+        if "items" not in inventory_result or "inventory_status" not in inventory_result:
+            print("[Payment Service] Bỏ qua tin nhắn không đúng định dạng kết quả kiểm kho")
+            message.ack()
+            return
+
         payment_result = process_payment(inventory_result)
         publish_payment_result(payment_result)
 
@@ -154,10 +159,8 @@ def callback(message):
         print("[Payment Service] Xác nhận tin nhắn")
 
     except Exception as e:
-        print("[Payment Service] Error:", e)
-        if "items" not in inventory_result:
-            message.ack()
-            return
+        print("[Payment Service] Lỗi:", e)
+        message.nack()
 
 
 print("[Payment Service] Chờ yêu cầu thanh toán mới...")

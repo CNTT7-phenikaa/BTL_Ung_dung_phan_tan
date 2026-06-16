@@ -79,16 +79,19 @@ def callback(message):
         data = message.data.decode("utf-8")
         order = json.loads(data)
 
+        if "items" not in order:
+            print("[Analytics Service] Bỏ qua tin nhắn cũ vì không có trường items")
+            message.ack()
+            return
+
         analyze_order(order)
 
         message.ack()
         print("[Analytics Service] Đã xác nhận tin nhắn")
 
     except Exception as e:
-        print("[Analytics Service] Error:", e)
-        if "items" not in order:
-            message.ack()
-            return
+        print("[Analytics Service] Lỗi:", e)
+        message.nack()
 
 
 print("[Analytics Service] Đang chờ đơn hàng mới...")

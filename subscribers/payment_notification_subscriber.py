@@ -30,7 +30,6 @@ def format_items(items):
     return ", ".join(item_texts)
 
 def send_payment_notification(payment_result):
-    print("\n" + "=" * 60)
     order_id = payment_result["order_id"]
     customer = payment_result["customer"]
     items = payment_result["items"]
@@ -108,16 +107,19 @@ def callback(message):
         data = message.data.decode("utf-8")
         payment_result = json.loads(data)
 
+        if "items" not in payment_result or "payment_status" not in payment_result:
+            print("[Notification Service] Bỏ qua tin nhắn không đúng định dạng kết quả thanh toán")
+            message.ack()
+            return
+
         send_payment_notification(payment_result)
 
         message.ack()
         print("[Notification Service] Đã xác nhận yêu cầu gửi tin nhắn")
 
     except Exception as e:
-        print("[Notification Service] Error:", e)
-        if "items" not in payment_result:
-            message.ack()
-            return
+        print("[Notification Service] Lỗi:", e)
+        message.nack()
           
 
 

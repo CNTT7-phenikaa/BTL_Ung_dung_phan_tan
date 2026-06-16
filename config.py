@@ -12,3 +12,6 @@ payment_result_sub_id = "payment-result-sub"
 email_sub_id = "email-sub"
 analytics_sub_id = "analytics-sub"
 dead_letter_sub_id = "dead-letter-sub"
+
+tracking_inventory_result_sub_id = "tracking-inventory-result-sub"
+tracking_payment_result_sub_id = "tracking-payment-result-sub"

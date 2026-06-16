@@ -111,6 +111,11 @@ def callback(message):
         data = message.data.decode("utf-8")
         order = json.loads(data)
 
+        if "items" not in order:
+            print("[Inventory Service] Bỏ qua tin nhắn cũ vì không có trường items")
+            message.ack()
+            return
+
         inventory_result = check_inventory(order)
 
         publish_inventory_result(inventory_result)
@@ -119,10 +124,8 @@ def callback(message):
         print("[Inventory Service] Xác nhận kiểm tra đơn đặt hàng")
 
     except Exception as e:
-        print("[Inventory Service] Error:", e)
-        if "items" not in order:
-            message.ack()
-            return
+        print("[Inventory Service] Lỗi:", e)
+        message.nack()
 
 
 print("[Inventory Service] Đang chờ đơn hàng mới...")
