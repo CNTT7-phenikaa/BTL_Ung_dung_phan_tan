@@ -14,23 +14,45 @@ orders = [
     {
         "order_id": "ORD001",
         "customer": "Nguyen Quynh Trang",
-        "product": "Laptop",
-        "quantity": 1,
-        "price": 15000000
+        "items": [
+            {
+                "product": "Laptop",
+                "quantity": 1,
+                "price": 15000000
+            },
+            {
+                "product": "Mouse",
+                "quantity": 2,
+                "price": 300000
+            }
+        ]
     },
     {
         "order_id": "ORD002",
         "customer": "Nguyen Van A",
-        "product": "Mouse",
-        "quantity": 2,
-        "price": 300000
+        "items": [
+            {
+                "product": "Keyboard",
+                "quantity": 1,
+                "price": 500000
+            },
+            {
+                "product": "Mouse",
+                "quantity": 1,
+                "price": 300000
+            }
+        ]
     },
     {
         "order_id": "ORD003",
         "customer": "Nguyen Thi B",
-        "product": "Keyboard",
-        "quantity": 1,
-        "price": 500000
+        "items": [
+            {
+                "product": "Laptop",
+                "quantity": 1,
+                "price": 15000000
+            }
+        ]
     }
 ]
 
