@@ -21,6 +21,38 @@ payment_result_topic_path = publisher.topic_path(
     payment_result_topic_id
 )
 
+inventory_stock = {
+    "Laptop": 1,
+    "Mouse": 10,
+    "Keyboard": 5
+}
+
+
+def print_inventory_stock():
+    print("[Payment Service] Số lượng hàng còn lại trong kho:")
+    for product, quantity in inventory_stock.items():
+        print("[Payment Service]", product + ":", quantity)
+
+
+def update_inventory_after_success(items):
+    print("[Payment Service] Thanh toán thành công, tiến hành trừ kho...")
+
+    for item in items:
+        product = item["product"]
+        quantity = item["quantity"]
+
+        if product in inventory_stock:
+            inventory_stock[product] -= quantity
+
+            print(
+                "[Payment Service] Đã trừ kho:",
+                product,
+                "| Số lượng:",
+                quantity
+            )
+
+    print_inventory_stock()
+
 def calculate_total_amount(items):
     total_amount = 0
 
@@ -77,9 +109,12 @@ def process_payment(inventory_result):
         else:
             payment_status = "Thanh toán thành công"
             reason = "Đơn hàng đã được thanh toán"
-            print(f"[Payment Service] Dơn hàng {order_id} thanh toán thành công")
-            print(f"Lý do: {reason}")
+
+            print(f"[Payment Service] Đơn hàng {order_id} thanh toán thành công")
+            print(f"[Payment Service] Lý do: {reason}")
             print(f"[Payment Service] Trạng thái: {payment_status}")
+
+            update_inventory_after_success(items)
     else:
         payment_status = "Không thể thanh toán đơn hàng" 
         reason = "Không xác định được số hàng trong kho"

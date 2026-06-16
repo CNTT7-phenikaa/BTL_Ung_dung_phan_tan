@@ -60,13 +60,8 @@ def check_inventory(order):
     time.sleep(2)
 
     if len(sp_thieu) == 0:
-        for item in items:
-            product = item["product"]
-            quantity = item["quantity"]
-            inventory_stock[product] -= quantity
         inventory_status = "Xác nhận đủ hàng trong kho"
-        reason = "Số lượng trong kho còn đủ"
-
+        reason = "Số lượng trong kho còn đủ, chờ xử lý thanh toán"
         print("[Inventory Service] Đơn hàng:", order_id)
         print("[Inventory Service] Trạng thái:", inventory_status)
         print("[Inventory Service] Số lượng hàng còn trong kho:")
