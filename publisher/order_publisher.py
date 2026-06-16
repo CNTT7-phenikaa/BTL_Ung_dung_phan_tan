@@ -5,7 +5,7 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 import json
 import time
 from google.cloud import pubsub_v1
-from BTL_Ung_dung_phan_tan.config import project_id, order_topic_id
+from config import project_id, order_topic_id
 
 publisher = pubsub_v1.PublisherClient()
 topic_path = publisher.topic_path(project_id, order_topic_id)
@@ -23,7 +23,7 @@ orders = [
         "customer": "Nguyen Van A",
         "product": "Mouse",
         "quantity": 2,
-       "price": 300000
+        "price": 300000
     },
     {
         "order_id": "ORD003",
