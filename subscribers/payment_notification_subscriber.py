@@ -115,7 +115,10 @@ def callback(message):
 
     except Exception as e:
         print("[Notification Service] Error:", e)
-        message.nack()
+        if "items" not in payment_result:
+            message.ack()
+            return
+          
 
 
 print("[Notification Service] Chờ xác nhận thanh toán mới...")

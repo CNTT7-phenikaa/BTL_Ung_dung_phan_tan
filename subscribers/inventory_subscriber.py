@@ -120,7 +120,9 @@ def callback(message):
 
     except Exception as e:
         print("[Inventory Service] Error:", e)
-        message.nack()
+        if "items" not in order:
+            message.ack()
+            return
 
 
 print("[Inventory Service] Đang chờ đơn hàng mới...")

@@ -86,7 +86,9 @@ def callback(message):
 
     except Exception as e:
         print("[Analytics Service] Error:", e)
-        message.nack()
+        if "items" not in order:
+            message.ack()
+            return
 
 
 print("[Analytics Service] Đang chờ đơn hàng mới...")

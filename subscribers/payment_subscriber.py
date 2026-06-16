@@ -155,7 +155,9 @@ def callback(message):
 
     except Exception as e:
         print("[Payment Service] Error:", e)
-        message.nack()
+        if "items" not in inventory_result:
+            message.ack()
+            return
 
 
 print("[Payment Service] Chờ yêu cầu thanh toán mới...")
