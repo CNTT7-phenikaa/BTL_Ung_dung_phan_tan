@@ -103,7 +103,7 @@ Quy trình xử lý đơn hàng trong hệ thống diễn ra như sau:
 
 ## 5. Sơ đồ luồng xử lý
 
-![Kiến trúc hệ thống](docs/Kien_truc_dat_hang_final.drawio.png)
+![Kiến trúc hệ thống](Kien_truc_dat_hang_final.drawio.png)
 
 
 ## 6. Ý nghĩa của kiến trúc phân tán
