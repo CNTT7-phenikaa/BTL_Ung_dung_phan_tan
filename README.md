@@ -71,9 +71,9 @@ Vui lòng liên hệ với thành viên nhóm qua email để được cấp quy
 Email liên hệ: nguyenquynhtrang7092005@gmail.com
 
 Hoặc tự tạo project mới trên Google Cloud và tạo lại các topic/subscription theo cấu hình trong config.py.
-### Bước 1: Chọn đúng Google Cloud Project
+### Chọn đúng Google Cloud Project
 
-Nếu đã được cấp quyền vào project của nhóm, thực hiện các lệnh sau:
+ Thực hiện các lệnh sau để xem demo:
 
 ```bash
 gcloud projects list #kiểm tra danh sách project
@@ -97,7 +97,7 @@ python subscribers/analytics_subscriber.py
 python publisher/order_publisher.py
 
 ```
-```markdown
+
 Sau khi chạy publisher, đơn hàng sẽ được gửi lên order-topic và các subscriber sẽ xử lý theo từng chức năng.
 
 ## 8. Kết quả mong đợi
@@ -110,7 +110,7 @@ Khi chạy chương trình, hệ thống sẽ:
 4. Nếu đủ hàng, Payment Service xử lý thanh toán.
 5. Payment Notification Service gửi thông báo kết quả thanh toán.
 6. Order Tracking Service ghi trạng thái xử lý vào file log.
-```
+
 ## 9. Cấu trúc thư mục
 
 ```text
@@ -140,6 +140,4 @@ BTL_Ung_dung_phan_tan/
 ├── README.md
 └── .gitignore
 ```
-```markdown
-
-Lưu ý : Thư mục `logs/` được sử dụng để lưu log khi chạy chương trình và không được đẩy lên GitHub.
+Lưu ý : File log sẽ tự động được tạo khi chạy file `order_tracking_subscriber.py`.
