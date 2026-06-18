@@ -129,6 +129,7 @@ BTL_Ung_dung_phan_tan/
 │
 ├── docs/
 │   |── architecture.md
+│   |── Bcao_ung_dung_phan_tan.pdf
 │   └── Kien_truc_dat_hang_final.drawio.png
 |
 │
